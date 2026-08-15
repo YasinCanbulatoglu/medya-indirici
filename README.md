@@ -28,3 +28,7 @@ Next.js kullanılarak geliştirilmiş, Puppeteer ile web scraping yapabilen ve H
 npm install
 npm run dev
 ```
+
+## Ekran Görüntüsü
+![Proje Görseli](Medya İndirici (Next.js & Puppeteer) .png)
+
