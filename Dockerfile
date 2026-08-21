@@ -3,6 +3,7 @@ FROM node:22-bookworm-slim AS build
 WORKDIR /app
 
 ENV PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -17,12 +18,14 @@ WORKDIR /app
 ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0 \
     PORT=3000 \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
     PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
 
 RUN apt-get update && apt-get install -y --no-install-recommends \ 
     ffmpeg \
     python3 \
     wget \
+    chromium \
     ca-certificates \
     fonts-liberation \
     libasound2 \
@@ -55,7 +58,6 @@ COPY --from=build /app/package.json /app/package-lock.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
-COPY --from=build /app/.cache/puppeteer ./.cache/puppeteer
 
 EXPOSE 3000
 
