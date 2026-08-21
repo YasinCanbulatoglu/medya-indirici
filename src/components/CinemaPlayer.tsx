@@ -133,46 +133,54 @@ export default function CinemaPlayer({ streamUrl, pageUrl, title, thumbnail, onC
         }`}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between p-4 bg-slate-900/80 border-b border-white/10 z-10">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center text-white">
-              <Tv className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="text-sm md:text-base font-bold text-white line-clamp-1">{title}</h3>
-              <div className="flex items-center gap-2 mt-0.5">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  Reklamsız Canlı Oynatıcı Koruması
-                </span>
+        <div className="flex flex-col md:flex-row items-center justify-between p-4 bg-slate-900/80 border-b border-white/10 z-10 gap-4">
+          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center text-white shrink-0">
+                <Tv className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-sm md:text-base font-bold text-white line-clamp-1">{title}</h3>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase flex items-center gap-1 truncate">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="truncate">Reklamsız Koruma</span>
+                  </span>
+                </div>
               </div>
             </div>
+            <button
+              onClick={onClose}
+              className="md:hidden w-9 h-9 rounded-full bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-white/10 flex items-center justify-center transition-all shrink-0"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 w-full md:w-auto">
             <button
               onClick={() => setMode(mode === "embed" ? "hls" : "embed")}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all flex items-center gap-1"
+              className="flex-1 md:flex-none justify-center px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all flex items-center gap-1"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
-              {mode === "embed" ? "Gelişmiş HLS Modu" : "Temiz Web Oynatıcı Modu"}
+              <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+              {mode === "embed" ? "HLS Modu" : "Web Modu"}
             </button>
 
             <button
               onClick={() => setTheaterMode(!theaterMode)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+              className={`flex-1 md:flex-none justify-center px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1 ${
                 theaterMode
                   ? "bg-purple-500/20 text-purple-300 border-purple-500/30"
                   : "bg-slate-800 text-slate-400 border-white/10"
               }`}
             >
-              <Film className="w-3.5 h-3.5 inline mr-1" />
-              Işıkları Kapat
+              <Film className="w-3.5 h-3.5 inline shrink-0" />
+              Işıklar
             </button>
 
             <button
               onClick={onClose}
-              className="w-9 h-9 rounded-full bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-white/10 flex items-center justify-center transition-all"
+              className="hidden md:flex w-9 h-9 rounded-full bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-white/10 items-center justify-center transition-all shrink-0"
             >
               <X className="w-5 h-5" />
             </button>

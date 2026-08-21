@@ -549,10 +549,10 @@ export default function Home() {
                           <img
                             src={job.thumbnail}
                             alt={job.title}
-                            className="w-20 h-20 object-cover rounded-xl border border-white/10 shadow-md shrink-0"
+                            className="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-xl border border-white/10 shadow-md shrink-0"
                           />
                         ) : (
-                          <div className="w-20 h-20 rounded-xl bg-gradient-to-tr from-purple-900/50 to-slate-900 border border-white/10 flex items-center justify-center text-purple-400 shrink-0">
+                          <div className="w-full sm:w-20 h-40 sm:h-20 rounded-xl bg-gradient-to-tr from-purple-900/50 to-slate-900 border border-white/10 flex items-center justify-center text-purple-400 shrink-0">
                             {job.format === "mp3" ? <Music className="w-8 h-8" /> : <Film className="w-8 h-8" />}
                           </div>
                         )}
