@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.github
+Dockerfile*
+docker-compose*.yml
+npm-debug.log*
+.env*
+downloads
+public/downloads
+*.mp4
+*.mp3
+*.m4a
+*.webm
+*.mkv
