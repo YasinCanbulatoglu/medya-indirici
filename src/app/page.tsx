@@ -334,28 +334,28 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen pb-20 pt-6 px-4 max-w-5xl mx-auto flex flex-col items-center">
+    <main className="min-h-screen pb-24 md:pb-20 pt-4 md:pt-6 px-3 md:px-4 max-w-5xl mx-auto flex flex-col items-center">
       {/* Header Bar */}
-      <header className="w-full flex flex-col md:flex-row items-center justify-between gap-4 mb-8 py-3 px-6 glass-card rounded-2xl border border-white/10">
+      <header className="w-full flex items-center justify-between gap-4 mb-6 md:mb-8 py-3 px-4 md:px-6 glass-card rounded-2xl border border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 flex items-center justify-center shadow-lg shadow-purple-500/30">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 flex items-center justify-center shadow-lg shadow-purple-500/30">
             <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <Download className="w-6 h-6 text-cyan-400 animate-pulse" />
+              <Download className="w-5 h-5 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
             </div>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-gradient">StreamPulse</h1>
-              <span className="text-[11px] font-semibold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase">
+              <h1 className="text-lg md:text-xl font-bold text-gradient">StreamPulse</h1>
+              <span className="hidden sm:inline-block text-[11px] font-semibold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase">
                 Bana Özel
               </span>
             </div>
-            <p className="text-xs text-slate-400">Tekli & Toplu İndirme + Reklamsız Canlı İzleme Portalı</p>
+            <p className="text-[10px] md:text-xs text-slate-400">Tekli & Toplu Medya İndirici</p>
           </div>
         </div>
 
-        {/* Tab Switcher */}
-        <div className="flex flex-col sm:flex-row w-full md:w-auto items-stretch sm:items-center gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-white/5">
+        {/* Desktop Tab Switcher (Hidden on Mobile) */}
+        <div className="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-white/5">
           <button
             onClick={() => setActiveTab("downloader")}
             className={`flex justify-center items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
@@ -975,6 +975,38 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-xl border-t border-white/10 pb-safe">
+        <div className="flex items-center justify-around p-2">
+          <button
+            onClick={() => setActiveTab("downloader")}
+            className={`flex flex-col items-center justify-center w-full py-2 gap-1 rounded-xl transition-all ${
+              activeTab === "downloader"
+                ? "text-cyan-400 bg-cyan-500/10"
+                : "text-slate-500 hover:text-slate-300"
+            }`}
+          >
+            <Sparkles className="w-5 h-5" />
+            <span className="text-[10px] font-medium">İndirici</span>
+          </button>
+          
+          <button
+            onClick={() => setActiveTab("history")}
+            className={`flex flex-col items-center justify-center w-full py-2 gap-1 rounded-xl transition-all relative ${
+              activeTab === "history"
+                ? "text-purple-400 bg-purple-500/10"
+                : "text-slate-500 hover:text-slate-300"
+            }`}
+          >
+            <History className="w-5 h-5" />
+            <span className="text-[10px] font-medium">İndirilenler</span>
+            {history.length > 0 && (
+              <span className="absolute top-1.5 right-6 md:right-8 w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+            )}
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
