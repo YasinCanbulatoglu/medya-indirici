@@ -355,10 +355,10 @@ export default function Home() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-white/5">
+        <div className="flex flex-col sm:flex-row w-full md:w-auto items-stretch sm:items-center gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-white/5">
           <button
             onClick={() => setActiveTab("downloader")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+            className={`flex justify-center items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
               activeTab === "downloader"
                 ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20"
                 : "text-slate-400 hover:text-white"
@@ -369,7 +369,7 @@ export default function Home() {
           </button>
           <button
             onClick={() => setActiveTab("history")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+            className={`flex justify-center items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
               activeTab === "history"
                 ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20"
                 : "text-slate-400 hover:text-white"
@@ -403,7 +403,7 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
             {/* Single vs Bulk Mode Toggle */}
-            <div className="flex items-center justify-between mb-3 px-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 px-1 gap-2">
               <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
                 <Link2 className="w-4 h-4 text-cyan-400" />
                 {isBulkMode ? "Toplu İndirme Modu (Her satıra bir link)" : "Tekli İndirme & İzleme Modu"}
@@ -698,16 +698,15 @@ export default function Home() {
                               <h4 className="text-base font-bold text-white mb-1 line-clamp-2">{item.metadata.title}</h4>
                               <p className="text-xs text-slate-400 mb-3">Yayıncı: {item.metadata.uploader}</p>
 
-                              {/* Format Switcher */}
                               <div className="flex flex-wrap items-center gap-3 mb-4">
-                                <div className="flex bg-slate-900/80 p-1 rounded-xl border border-white/10">
+                                <div className="flex w-full sm:w-auto bg-slate-900/80 p-1 rounded-xl border border-white/10">
                                   <button
                                     onClick={() => {
                                       const updated = [...batchItems];
                                       updated[idx].selectedFormat = "mp4";
                                       setBatchItems(updated);
                                     }}
-                                    className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
+                                    className={`flex-1 justify-center px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
                                       item.selectedFormat === "mp4"
                                         ? "bg-purple-600 text-white shadow-md"
                                         : "text-slate-400 hover:text-white"
@@ -722,7 +721,7 @@ export default function Home() {
                                       updated[idx].selectedFormat = "mp3";
                                       setBatchItems(updated);
                                     }}
-                                    className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
+                                    className={`flex-1 justify-center px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
                                       item.selectedFormat === "mp3"
                                         ? "bg-cyan-600 text-white shadow-md"
                                         : "text-slate-400 hover:text-white"
@@ -740,7 +739,7 @@ export default function Home() {
                                     updated[idx].selectedQuality = e.target.value;
                                     setBatchItems(updated);
                                   }}
-                                  className="py-1.5 px-3 rounded-xl bg-slate-900 border border-white/10 text-xs font-medium text-purple-200 outline-none focus:border-purple-500"
+                                  className="w-full sm:w-auto py-1.5 px-3 rounded-xl bg-slate-900 border border-white/10 text-xs font-medium text-purple-200 outline-none focus:border-purple-500"
                                 >
                                   {(item.selectedFormat === "mp4"
                                     ? item.metadata.defaultVideoFormats
@@ -834,16 +833,16 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {history.map((item) => (
-                <div key={item.id} className="glass-card p-4 rounded-2xl border border-white/10 flex gap-4 items-center">
+                <div key={item.id} className="glass-card p-4 rounded-2xl border border-white/10 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                   {item.thumbnail ? (
-                    <img src={item.thumbnail} alt={item.title} className="w-20 h-20 object-cover rounded-xl border border-white/10 shrink-0" />
+                    <img src={item.thumbnail} alt={item.title} className="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-xl border border-white/10 shrink-0" />
                   ) : (
-                    <div className="w-20 h-20 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-500 shrink-0">
+                    <div className="w-full sm:w-20 h-40 sm:h-20 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-500 shrink-0">
                       {item.format === "mp3" ? <Music className="w-8 h-8 text-cyan-400" /> : <Video className="w-8 h-8 text-purple-400" />}
                     </div>
                   )}
 
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 w-full">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
                         {item.format}
@@ -852,16 +851,16 @@ export default function Home() {
                     </div>
                     <h4 className="text-xs font-semibold text-white truncate mb-2">{item.title}</h4>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       {item.downloadUrl && (
                         <>
                           <a
                             href={item.downloadUrl}
                             download
-                            className="p-2 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium flex items-center gap-1 hover:bg-emerald-500/30 transition-all"
+                            className="p-2 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium flex items-center justify-center flex-1 sm:flex-none gap-1 hover:bg-emerald-500/30 transition-all"
                           >
                             <Download className="w-3.5 h-3.5" />
-                            İndir
+                            <span className="sm:hidden">İndir</span>
                           </a>
                           <button
                             onClick={() =>
@@ -871,10 +870,10 @@ export default function Home() {
                                 type: item.format === "mp3" ? "audio" : "video",
                               })
                             }
-                            className="p-2 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-medium flex items-center gap-1 hover:bg-purple-500/30 transition-all"
+                            className="p-2 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-medium flex items-center justify-center flex-1 sm:flex-none gap-1 hover:bg-purple-500/30 transition-all"
                           >
                             <Play className="w-3.5 h-3.5" />
-                            Oynat
+                            <span className="sm:hidden">Oynat</span>
                           </button>
                           <button
                             onClick={() =>
@@ -883,7 +882,7 @@ export default function Home() {
                                 title: item.title,
                               })
                             }
-                            className="p-2 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-medium flex items-center gap-1 hover:bg-cyan-500/30 transition-all"
+                            className="p-2 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-medium flex items-center justify-center gap-1 hover:bg-cyan-500/30 transition-all"
                             title="Telefona QR Kod ile Aktar"
                           >
                             <QrCode className="w-3.5 h-3.5" />
@@ -892,7 +891,7 @@ export default function Home() {
                       )}
                       <button
                         onClick={() => handleDeleteHistoryItem(item.filename)}
-                        className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-all ml-auto"
+                        className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-all sm:ml-auto"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
