@@ -977,7 +977,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Mobile Bottom Navigation Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-xl border-t border-white/10 pb-safe">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-xl border-t border-white/10 pb-[env(safe-area-inset-bottom,16px)]">
         <div className="flex items-center justify-around p-2">
           <button
             onClick={() => setActiveTab("downloader")}
