@@ -439,8 +439,8 @@ export default function Home() {
                       if (error) setError(null);
                     }}
                     onKeyDown={(e) => e.key === "Enter" && handleAnalyze()}
-                    placeholder="Video, müzik veya film bağlantısını yapıştırın..."
-                    className="w-full pl-4 pr-24 py-4 rounded-2xl glass-input text-sm md:text-base placeholder-slate-500"
+                    placeholder="Link yapıştırın (YouTube, Insta vb.)"
+                    className="w-full pl-3 pr-24 py-3 md:pl-4 md:py-4 rounded-2xl glass-input text-sm md:text-base placeholder-slate-500"
                   />
                 )}
 
@@ -470,7 +470,7 @@ export default function Home() {
               <button
                 onClick={() => handleAnalyze()}
                 disabled={isMounted ? analyzing || !inputText.trim() : false}
-                className="w-full md:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:opacity-90 disabled:opacity-50 text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 transition-all active:scale-[0.98] shrink-0"
+                className="w-full md:w-auto px-6 py-3 md:px-8 md:py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:opacity-90 disabled:opacity-50 text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 transition-all active:scale-[0.98] shrink-0"
               >
                 {analyzing ? (
                   <>
