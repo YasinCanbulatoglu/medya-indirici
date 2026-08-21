@@ -19,7 +19,10 @@ ENV NODE_ENV=production \
     PORT=3000 \
     PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \ 
+    ffmpeg \
+    python3 \
+    wget \
     ca-certificates \
     fonts-liberation \
     libasound2 \
@@ -44,6 +47,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxrandr2 \
     xdg-utils \
     && rm -rf /var/lib/apt/lists/*
+ 
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp \
+    && chmod a+rx /usr/local/bin/yt-dlp
 
 COPY --from=build /app/package.json /app/package-lock.json ./
 COPY --from=build /app/node_modules ./node_modules
